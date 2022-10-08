@@ -87,6 +87,20 @@ starter project contains the following file structure:
     └── patient.fsh           // The FSH file where you will write your FSH definitions
 ```
 
+### Step 3.1: Required File Structure Changes
+
+1. Rename file `\fsh\config.yaml` to `sushi-config.yaml` and move it to the top level of the directory.
+2. Move the `\fsh\ig-data\` folder to the top level of the directory.
+3. Create a new folder `input` at the top level of the directory and move the `fsh\` folder inside.
+4. Create a new file at the top level of the directory called `ig.ini` with the following information:
+```ini
+[IG]
+ig = fsh-generated/resources/ImplementationGuide-hl7.fhir.us.core.json
+template = fhir.base.template#0.1.0
+```
+5. Edit `sushi-config.yaml` and remove the 'template' statement.
+6. Edit your `.gitignore` file to include the `/fsh-generated` location that will be generated later in this process.
+
 ## Step 4: Review the US Core Patient profile
 
 Open the [US Core Patient profile](http://hl7.org/fhir/us/core/STU3.1/StructureDefinition-us-core-patient.html)
@@ -145,15 +159,19 @@ warnings. You also get a free random fish pun to celebrate with!
 
 ```
 ╔════════════════════════ SUSHI RESULTS ══════════════════════════╗
-║ ╭──────────┬────────────┬───────────┬─────────────┬───────────╮ ║
-║ │ Profiles │ Extensions │ ValueSets │ CodeSystems │ Instances │ ║
-║ ├──────────┼────────────┼───────────┼─────────────┼───────────┤ ║
-║ │    1     │     0      │     0     │      0      │     0     │ ║
-║ ╰──────────┴────────────┴───────────┴─────────────┴───────────╯ ║
+║ ╭───────────────┬──────────────┬──────────────┬───────────────╮ ║
+║ │    Profiles   │  Extensions  │   Logicals   │   Resources   │ ║
+║ ├───────────────┼──────────────┼──────────────┼───────────────┤ ║
+║ │       1       │      0       │      0       │       0       │ ║
+║ ╰───────────────┴──────────────┴──────────────┴───────────────╯ ║
+║ ╭────────────────────┬───────────────────┬────────────────────╮ ║
+║ │      ValueSets     │    CodeSystems    │     Instances      │ ║
+║ ├────────────────────┼───────────────────┼────────────────────┤ ║
+║ │         0          │         0         │         0          │ ║
+║ ╰────────────────────┴───────────────────┴────────────────────╯ ║
 ║                                                                 ║
-║ See SUSHI-GENERATED-FILES.md for details on generated IG files. ║
 ╠═════════════════════════════════════════════════════════════════╣
-║ O-fish-ally error free!                0 Errors      0 Warnings ║
+║ Why pun? Just for for the halibut.     0 Errors      0 Warnings ║
 ╚═════════════════════════════════════════════════════════════════╝
 ```
 
@@ -173,6 +191,8 @@ To run the HL7 IG Publisher on the files that SUSHI just generated:
 2. Run the following command to download the HL7 IG Publisher jar (Java Archive)
    - Windows: `_updatePublisher.bat`
    - Mac: `./_updatePublisher.sh`
+   - If you receive an error "IG Publisher is not yet in input-cache or parent folder. 
+     Will place publisher jar here:" enter "Y" for accept the default loaction.
 3. Once it is downloaded, run the following command to invoke the HL7 IG Publisher:
    - Windows: `_genonce.bat`
    - Mac: `./_genonce.sh`
