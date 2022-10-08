@@ -1,7 +1,7 @@
 # FHIR Shorthand: Let’s Build!
-## Example documentation updated October 2022
+_Example documentation updated October 2022_
 
-_Track Leads: Mark Kramer and Chris Moesel_
+_Original Track Leads: Mark Kramer and Chris Moesel_
 
 During this Let’s Build! session, you will learn how to build a small FHIR Implementation Guide (IG)
 by attempting to reproduce the US Core Patient profile using FHIR Shorthand.
